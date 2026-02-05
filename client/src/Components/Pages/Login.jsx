@@ -65,12 +65,15 @@ function Login({ onLoginSuccess }) {
           //   },
           // );
 
-          axios.post(`${process.env.REACT_APP_API_BASE}/api/users/login`, {
-            email,
-            password,
-          });
+          await axios.post(
+            `${process.env.REACT_APP_API_BASE}/api/users/login`,
+            {
+              email,
+              password,
+            },
+          );
 
-          // console.log("LOGIN RESPONSE 👉", res.data);
+          console.log("LOGIN RESPONSE 👉", res.data);
 
           if (res.data && res.data.token && res.data.user) {
             const userData = {
