@@ -37,7 +37,17 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ error: "Email already in use" });
     }
 
-    const user = new User({ name, email, password, securityAnswer });
+    const salt = await bcrypt.genSalt(10);
+
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const hashedSecurity = await bcrypt.hash(securityAnswer, salt);
+
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      securityAnswer: hashedSecurity,
+    });
     await user.save();
 
     res.status(201).json({ message: "User registered successfully ✅" });
