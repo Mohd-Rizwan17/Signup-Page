@@ -65,7 +65,7 @@ function Login({ onLoginSuccess }) {
           //   },
           // );
 
-          axios.post(`${process.env.REACT_APP_API_BASE}/api/users/login`, {
+          axios.post(`https://signup-page-73ic.onrender.com/api/users/login`, {
             email,
             password,
           });
@@ -134,7 +134,7 @@ function Login({ onLoginSuccess }) {
 
         try {
           await axios.post(
-            `${process.env.REACT_APP_API_BASE}/api/users/register`,
+            `https://signup-page-73ic.onrender.com/api/users/register`,
             {
               // await axios.post("http://localhost:5000/api/users/register", {
               name: username,
