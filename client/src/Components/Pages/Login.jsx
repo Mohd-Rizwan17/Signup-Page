@@ -65,15 +65,26 @@ function Login({ onLoginSuccess }) {
           //   },
           // );
 
-          await axios.post(
-            `${process.env.REACT_APP_API_BASE}/api/users/login`,
-            {
-              email,
-              password,
-            },
-          );
+          const BASE =
+            process.env.REACT_APP_API_BASE ||
+            "https://signup-page-73ic.onrender.com";
+
+          const res = await axios.post(`${BASE}/api/users/login`, {
+            email,
+            password,
+          });
 
           console.log("LOGIN RESPONSE 👉", res.data);
+
+          // await axios.post(
+          //   `${process.env.REACT_APP_API_BASE}/api/users/login`,
+          //   {
+          //     email,
+          //     password,
+          //   },
+          // );
+
+          // console.log("LOGIN RESPONSE 👉", res.data);
 
           if (res.data && res.data.token && res.data.user) {
             const userData = {
