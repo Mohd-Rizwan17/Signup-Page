@@ -57,13 +57,18 @@ function Login({ onLoginSuccess }) {
         }
 
         try {
-          const res = await axios.post(
-            "http://localhost:5000/api/users/login",
-            {
-              email: email,
-              password: password,
-            },
-          );
+          // const res = await axios.post(
+          //   "http://localhost:5000/api/users/login",
+          //   {
+          //     email: email,
+          //     password: password,
+          //   },
+          // );
+
+          axios.post(`${process.env.REACT_APP_API_BASE}/api/users/login`, {
+            email,
+            password,
+          });
 
           // console.log("LOGIN RESPONSE 👉", res.data);
 
@@ -128,12 +133,16 @@ function Login({ onLoginSuccess }) {
         }
 
         try {
-          await axios.post("http://localhost:5000/api/users/register", {
-            name: username,
-            email: email,
-            password: password,
-            securityAnswer: securityAnswer,
-          });
+          await axios.post(
+            `${process.env.REACT_APP_API_BASE}/api/users/register`,
+            {
+              // await axios.post("http://localhost:5000/api/users/register", {
+              name: username,
+              email: email,
+              password: password,
+              securityAnswer: securityAnswer,
+            },
+          );
 
           showPopup("🎊 Registration successful!");
 
