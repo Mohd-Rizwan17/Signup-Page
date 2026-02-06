@@ -9,6 +9,7 @@ import {
 
 import Home from "./Components/Home";
 import ForgetPassword from "./Components/Pages/ForgetPassword";
+import HomePage from "./Components/HomePage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,6 +33,7 @@ function App() {
       <Router>
         {!user}
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/"
             element={
