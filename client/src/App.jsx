@@ -30,7 +30,7 @@ function App() {
   return (
     <>
       {/* <Login /> */}
-      <Router>
+      {/* <Router>
         {!user}
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -51,6 +51,37 @@ function App() {
                 <Navigate to={"/dashboard"} />
               ) : (
                 <Login onLoginSuccess={handleLoginSuccess} />
+              )
+            }
+          />
+
+          <Route path="/forget-password" element={<ForgetPassword />} />
+
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+        </Routes>
+      </Router> */}
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+
+          <Route
+            path="/login"
+            element={
+              user ? (
+                <Navigate to="/dashboard" />
+              ) : (
+                <Login onLoginSuccess={handleLoginSuccess} />
+              )
+            }
+          />
+
+          <Route
+            path="/dashboard"
+            element={
+              user ? (
+                <Home user={user} onlogout={handleLogout} />
+              ) : (
+                <Navigate to="/login" />
               )
             }
           />
