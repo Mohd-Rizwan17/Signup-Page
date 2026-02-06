@@ -33,9 +33,9 @@ function App() {
       <Router>
         {!user}
         <Routes>
-          {/* <Route path="/" element={<HomePage />} /> */}
+          <Route path="/" element={<HomePage />} />
           <Route
-            path="/"
+            path="/dashboard"
             element={
               user ? (
                 <Home user={user} onlogout={handleLogout} />
@@ -48,7 +48,7 @@ function App() {
             path="/Login"
             element={
               user ? (
-                <Navigate to={"/"} />
+                <Navigate to={"/dashboard"} />
               ) : (
                 <Login onLoginSuccess={handleLoginSuccess} />
               )
