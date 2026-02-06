@@ -1,34 +1,117 @@
-.homeWrap {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #1e1e2f, #3a3a6a);
+/* ===== PAGE ===== */
+
+.home-page {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #020617, #0b1025, #020617);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-family: sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
-.homeWrap h1 {
-  font-size: 48px;
+/* ===== BACKGROUND GLOW ===== */
+
+.home-page::before,
+.home-page::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    circle at center,
+    rgba(124, 58, 237, 0.28),
+    transparent 60%
+  );
+  filter: blur(140px);
+  animation: floatBg 22s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+.home-page::after {
+  animation-delay: 6s;
+}
+
+@keyframes floatBg {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(120px, 80px) scale(1.2);
+  }
+  100% {
+    transform: translate(-60px, -40px) scale(1);
+  }
+}
+
+/* ===== CARD ===== */
+
+.home-card {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(16px);
+  padding: 50px 46px;
+  border-radius: 24px;
+  width: 380px;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+  transition: 0.35s;
+}
+
+.home-card:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* ===== TEXT ===== */
+
+.home-card h1 {
+  color: white;
+  font-size: 34px;
+  letter-spacing: 0.5px;
   margin-bottom: 10px;
 }
 
-.homeWrap p {
-  font-size: 18px;
-  opacity: 0.9;
+.home-card p {
+  color: #cbd5e1;
+  font-size: 15px;
+  margin-bottom: 26px;
 }
 
-.homeWrap button {
-  margin-top: 20px;
-  padding: 12px 28px;
+/* ===== BUTTON ===== */
+
+.home-card button {
+  background: linear-gradient(135deg, #7c3aed, #38bdf8);
   border: none;
-  border-radius: 6px;
+  padding: 12px 34px;
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  background: #ffcc00;
-  font-weight: bold;
+  transition: 0.3s;
 }
 
-.homeWrap button:hover {
-  background: #ffd633;
+.home-card button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 22px rgba(124, 58, 237, 0.6);
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 520px) {
+  .home-card {
+    width: 90%;
+    padding: 40px 26px;
+  }
+
+  .home-card h1 {
+    font-size: 28px;
+  }
 }
