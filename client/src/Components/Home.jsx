@@ -72,16 +72,24 @@ function Home({ user, onlogout }) {
           headers: { Authorization: `Bearer ${user.token}` },
         });
 
-        const total = res.data.length;
-        const admins = res.data.filter((u) => u.isAdmin).length;
+        let users = [];
+
+        if (Array.isArray(res.data)) {
+          users = res.data;
+        } else if (Array.isArray(res.data.users)) {
+          users = res.data.users;
+        }
+
+        const total = users.length;
+        const admins = users.filter((u) => u.isAdmin === true).length;
 
         setStats({
           total,
           admins,
-          active: total, // demo active
+          active: total,
         });
       } catch (err) {
-        console.log("Stats error:", err.message);
+        console.log("Stats error:", err.response?.data || err.message);
       }
     };
 
