@@ -38,6 +38,7 @@
 import React, { useEffect, useState } from "react";
 import Admin from "./Pages/Admin";
 import "./Home.css";
+import axios from "axios";
 
 const BASE =
   process.env.REACT_APP_API_BASE || "https://signup-page-73ic.onrender.com";
@@ -71,16 +72,18 @@ function Home({ user, onlogout }) {
           headers: { Authorization: `Bearer ${user.token}` },
         });
 
-        const total = res.data.length;
-        const admins = res.data.filter((u) => u.isAdmin).length;
+        const users = Array.isArray(res.data) ? res.data : res.data.users;
+
+        const total = users.length;
+        const admins = users.filter((u) => u.isAdmin).length;
 
         setStats({
           total,
           admins,
-          active: total, // demo active
+          active: total, // abhi demo ke liye sab active
         });
       } catch (err) {
-        console.log("Stats error:", err.message);
+        console.log("Stats error:", err.response?.data || err.message);
       }
     };
 
