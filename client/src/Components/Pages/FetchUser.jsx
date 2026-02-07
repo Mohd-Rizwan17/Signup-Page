@@ -94,6 +94,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const BASE =
+  process.env.REACT_APP_API_BASE || "https://signup-page-73ic.onrender.com";
+
 function FetchUser() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
@@ -105,9 +108,15 @@ function FetchUser() {
   const fetchData = async () => {
     try {
       // const response = await axios.get("https://mern-ef6b.onrender.com/api/users", {
-      const response = await axios.get("http://localhost:5000/api/users", {
+
+      // const response = await axios.get("http://localhost:5000/api/users", {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // });
+
+      const response = await axios.get(`${BASE}/api/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       setUsers(response.data);
     } catch (err) {
       setError(err.response?.data?.message || err.message);
@@ -117,9 +126,13 @@ function FetchUser() {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/users/${id}`, {
+      // await axios.delete(`http://localhost:5000/api/users/${id}`, {
+      //   headers: { Authorization: `Bearer ${token}` },
+      // });
+      await axios.delete(`${BASE}/api/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       setUsers((prev) => prev.filter((u) => u._id !== id));
     } catch (err) {
       setError(err.response?.data?.message || err.message);
