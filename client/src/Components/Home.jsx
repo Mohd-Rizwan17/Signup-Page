@@ -72,18 +72,16 @@ function Home({ user, onlogout }) {
           headers: { Authorization: `Bearer ${user.token}` },
         });
 
-        const users = Array.isArray(res.data) ? res.data : res.data.users;
-
-        const total = users.length;
-        const admins = users.filter((u) => u.isAdmin).length;
+        const total = res.data.length;
+        const admins = res.data.filter((u) => u.isAdmin).length;
 
         setStats({
           total,
           admins,
-          active: total, // abhi demo ke liye sab active
+          active: total, // demo active
         });
       } catch (err) {
-        console.log("Stats error:", err.response?.data || err.message);
+        console.log("Stats error:", err.message);
       }
     };
 
