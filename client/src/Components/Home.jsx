@@ -35,11 +35,20 @@
 
 //new home page
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Admin from "./Pages/Admin";
 import "./Home.css";
 
+const BASE =
+  process.env.REACT_APP_API_BASE || "https://signup-page-73ic.onrender.com";
+
 function Home({ user, onlogout }) {
+  const [stats, setStats] = useState({
+    total: 0,
+    active: 0,
+    admins: 0,
+  });
+
   useEffect(() => {
     const page = document.querySelector(".home-page");
 
@@ -52,6 +61,31 @@ function Home({ user, onlogout }) {
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, []);
+
+  useEffect(() => {
+    if (!user?.token || !user?.isAdmin) return;
+
+    const fetchStats = async () => {
+      try {
+        const res = await axios.get(`${BASE}/api/users`, {
+          headers: { Authorization: `Bearer ${user.token}` },
+        });
+
+        const total = res.data.length;
+        const admins = res.data.filter((u) => u.isAdmin).length;
+
+        setStats({
+          total,
+          admins,
+          active: total, // demo active
+        });
+      } catch (err) {
+        console.log("Stats error:", err.message);
+      }
+    };
+
+    fetchStats();
+  }, [user]);
 
   return (
     <div className="home-page">
@@ -73,15 +107,15 @@ function Home({ user, onlogout }) {
               <div className="stats-row">
                 <div className="stat-card">
                   <h4>Total Users</h4>
-                  <span>3</span>
+                  <span>{stats.total}</span>
                 </div>
                 <div className="stat-card">
                   <h4>Active Account</h4>
-                  <span>2</span>
+                  <span>{stats.active}</span>
                 </div>
                 <div className="stat-card">
                   <h4>Admins</h4>
-                  <span>1</span>
+                  <span>{stats.admins}</span>
                 </div>
               </div>
             )}
