@@ -155,8 +155,7 @@
   padding: 30px;
   border-radius: 22px;
   width: 520px;
-  /* height: 360px; */
-
+  max-height: 360px;
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
 }
@@ -178,7 +177,7 @@
 
 .users-container {
   margin-top: 10px;
-  height: calc(100% - 60px);
+  flex: 1;
   overflow-y: auto;
 
   scroll-behavior: smooth;
