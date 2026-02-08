@@ -141,10 +141,14 @@
   padding: 30px;
   border-radius: 22px;
   width: 520px;
+
   height: 360px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
+  min-height: 0;
+
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
 }
 
@@ -159,12 +163,15 @@
   flex: 1;
   overflow-y: auto;
 
+  min-height: 0;
+
   scroll-behavior: smooth;
   overscroll-behavior: contain;
 
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .users-container::-webkit-scrollbar {
   display: none;
 }
