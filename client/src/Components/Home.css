@@ -131,7 +131,7 @@
   letter-spacing: 1px;
 }
 
-.users-panel {
+/* .users-panel {
   background: linear-gradient(
     145deg,
     rgba(255, 255, 255, 0.06),
@@ -144,7 +144,29 @@
   height: 360px;
   overflow-y: auto;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+} */
+.users-panel {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(14px);
+  padding: 30px;
+  border-radius: 22px;
+  width: 520px;
+  height: 360px;
+
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
 }
+
 .users-panel::-webkit-scrollbar {
   width: 6px;
 }
@@ -265,7 +287,7 @@
   align-items: flex-start;
   justify-content: center;
   padding: 40px 0;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .stats-row {
