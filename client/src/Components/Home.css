@@ -178,6 +178,7 @@
 
 .users-panel h3 {
   color: white;
+  position: fixed;
   margin-bottom: 15px;
   letter-spacing: 1px;
 }
