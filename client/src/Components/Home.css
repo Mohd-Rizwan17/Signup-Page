@@ -155,32 +155,25 @@
   padding: 30px;
   border-radius: 22px;
   width: 520px;
-  height: 360px;
+  /* height: 360px; */
 
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
 }
 
-.users-panel::-webkit-scrollbar {
+/* .users-panel::-webkit-scrollbar {
   width: 6px;
 }
 
 .users-panel::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.25);
   border-radius: 10px;
-}
+} */
 
 .users-panel h3 {
   color: white;
   margin-bottom: 15px;
   letter-spacing: 1px;
-}
-.users-panel h3 {
-  position: sticky;
-  top: 0;
-  background: rgba(20, 20, 40, 0.6);
-  padding-bottom: 10px;
-  z-index: 2;
 }
 
 .users-container {
